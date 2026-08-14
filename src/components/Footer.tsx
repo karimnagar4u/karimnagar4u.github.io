@@ -19,7 +19,7 @@ export function Footer({ onNavigateTab }: FooterProps) {
             </div>
             <div>
               <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 font-serif">
-                Karimnagar4U
+                KARIMNAGAR4U
               </p>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 font-mono">
                 Events & Rent/Lease Hub
