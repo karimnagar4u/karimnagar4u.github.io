@@ -60,7 +60,7 @@ export function Footer({ onNavigateTab }: FooterProps) {
             {/* Instagram */}
             <a
               id="footer-social-instagram"
-              href="https://instagram.com"
+              href="https://instagram.com/karimnagar4u/"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-2.5 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm hover:scale-110 transition-transform flex items-center justify-center"
@@ -80,7 +80,7 @@ export function Footer({ onNavigateTab }: FooterProps) {
             {/* YouTube */}
             <a
               id="footer-social-youtube"
-              href="https://youtube.com"
+              href="https://youtube.com/@karimnagar4u"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-2.5 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm hover:scale-110 transition-transform flex items-center justify-center"
