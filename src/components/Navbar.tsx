@@ -43,7 +43,7 @@ export function Navbar({
               </div>
               <div>
                 <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-neutral-900 dark:text-white block font-serif">
-                  Karimnagar<span className="text-neutral-400 font-sans font-light text-base ml-1">.4U</span>
+                  Karimnagar<span className="text-neutral-400 font-sans font-light text-base ml-1">4U</span>
                 </span>
                 <span className="text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400 block -mt-1 font-mono">
                   Events & Rental Portal
