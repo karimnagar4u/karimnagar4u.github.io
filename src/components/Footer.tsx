@@ -15,14 +15,14 @@ export function Footer({ onNavigateTab }: FooterProps) {
           {/* Left / Info */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
             <div className="w-9 h-9 rounded-lg bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 flex items-center justify-center font-black text-sm">
-              E&R
+              K4U
             </div>
             <div>
               <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 font-serif">
-                Events & Rent/Lease Hub
+                Karimnagar4U
               </p>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 font-mono">
-                Powered by Markdown + Jekyll • Hosted on GitHub Pages
+                Events & Rent/Lease Hub
               </p>
             </div>
           </div>
