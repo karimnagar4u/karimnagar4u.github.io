@@ -38,19 +38,22 @@ export function Navbar({
               onClick={() => handleNav('home')}
               className="flex items-center gap-2.5 group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 dark:focus-visible:ring-neutral-100 rounded-md"
             >
-              <div className="w-10 h-10 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 flex items-center justify-center font-black tracking-tighter text-lg shadow-sm group-hover:scale-105 transition-transform">
-                <span>E&R</span>
-              </div>
-              <div>
-                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-neutral-900 dark:text-white block font-serif">
-                  HUB<span className="text-neutral-400 font-sans font-light text-base ml-1">.MD</span>
-                </span>
-                <span className="text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400 block -mt-1 font-mono">
-                  Markdown + Jekyll
-                </span>
-              </div>
-            </button>
-          </div>
+              {/* Custom Image Logo */}
+<img 
+  src="https://karimnagar4u.github.io/logo/logo.png" 
+  alt="Karimnagar4U Logo" 
+  className="w-10 h-10 rounded-xl object-contain shrink-0" 
+/>
+<div className="flex flex-col text-left">
+  <div className="flex items-center gap-1.5">
+    <span className="font-serif font-black text-lg tracking-tight text-neutral-900 dark:text-white">
+      Karimnagar
+    </span>
+  </div>
+  <span className="text-[10px] text-neutral-500 dark:text-neutral-400 font-medium tracking-wide">
+    Events & Rental Portal
+  </span>
+</div>
 
           {/* Menu bar on the right with the tabs: Events, Rent / Lease, List Yours + Theme Toggle */}
           <div className="hidden md:flex items-center gap-2 sm:gap-4">
