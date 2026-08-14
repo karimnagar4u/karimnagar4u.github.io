@@ -1,0 +1,6 @@
+{
+  "name": "Events & Rent/Lease Portal",
+  "description": "A Markdown and Jekyll-ready events and property rental directory with grid/list views, dropdown filters, detailed layouts, and listing submission.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
