@@ -1,0 +1,32 @@
+<!-- Hero Carousel Banner Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+  <div class="relative group rounded-2xl border-2 border-neutral-900 dark:border-neutral-700 shadow-xl overflow-hidden bg-neutral-900">
+    
+    <!-- Carousel Dynamic Container -->
+    <div id="hero-carousel" class="w-full aspect-[21/9] min-h-[280px] sm:min-h-[360px] md:min-h-[420px]">
+      <!-- Populated dynamically by app.js -->
+      <div class="skeleton-shimmer w-full h-full min-h-[360px] flex items-center justify-center">
+        <span class="text-neutral-500 font-mono text-xs uppercase tracking-wider">Loading Karimnagar Highlights...</span>
+      </div>
+    </div>
+
+    <!-- Carousel Prev / Next Controls (Desktop hover) -->
+    <button onclick="prevCarouselSlide()" aria-label="Previous Slide" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-opacity opacity-0 group-hover:opacity-100 z-10">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+
+    <button onclick="nextCarouselSlide()" aria-label="Next Slide" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-opacity opacity-0 group-hover:opacity-100 z-10">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <!-- Carousel Pagination Dots -->
+    <div id="carousel-dots" class="absolute bottom-4 right-6 flex items-center gap-2 z-10">
+      <!-- Dots injected dynamically -->
+    </div>
+
+  </div>
+</section>

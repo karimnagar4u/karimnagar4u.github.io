@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Post a Listing — Karimnagar4You</title>
+  <meta name="description" content="Submit your city event, commercial shutter, office space, or home rental on Karimnagar4You for free. Direct owner contact, zero broker fees.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://dbydxmedia.com/logo.png">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Site Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Theme Script (executed early to prevent flash) -->
+  <script src="assets/js/theme.js"></script>
+</head>
+<body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-white transition-colors duration-200">
+
+  <!-- Hidden iframe for silent background submission to Google Forms -->
+  <iframe name="hidden_submit_iframe" id="hidden_submit_iframe" style="display:none;" onload="onBackgroundSubmitted()"></iframe>
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-40 w-full bg-white/85 dark:bg-neutral-900/85 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo & Title -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="https://dbydxmedia.com/logo.png" alt="Karimnagar4You" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl object-contain shadow-sm transition-transform duration-200 group-hover:scale-105">
+          <div class="flex flex-col">
+            <span class="font-serif font-black tracking-tight text-xl sm:text-2xl text-neutral-900 dark:text-white leading-none flex items-baseline">
+              Karimnagar<span class="text-amber-500 ml-px">4</span><span class="text-amber-500">You</span>
+            </span>
+            <span class="font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mt-0.5">
+              Events & Rental Portal
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="index.html" class="font-sans font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+            </svg>
+            <span>Back to Directory</span>
+          </a>
+          <a href="index.html#rentals" class="font-sans font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+            Browse Rentals
+          </a>
+        </nav>
+
+        <!-- Right Action Controls -->
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" type="button" aria-label="Toggle Dark Mode" class="p-2 sm:p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 transition-colors shadow-sm">
+            <svg class="theme-icon-sun hidden w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg class="theme-icon-moon hidden w-5 h-5 text-neutral-700 dark:text-neutral-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <a href="index.html" class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-sans font-medium text-xs sm:text-sm bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors shadow-sm flex items-center gap-1.5">
+            <span>Explore Listings</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Flow -->
+  <main class="flex-grow">
+    
+    <!-- Hero Header -->
+    <section class="relative overflow-hidden pt-8 sm:pt-12 pb-8 border-b border-neutral-200 dark:border-neutral-800 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full font-mono text-xs uppercase tracking-wider bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900/50 mb-3">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+          <span>100% Free Listing Portal</span>
+        </div>
+
+        <h1 class="font-serif font-black tracking-tight text-3xl sm:text-5xl text-neutral-900 dark:text-white leading-tight mb-3">
+          Post Your Listing on <span class="text-amber-500">Karimnagar4You</span>
+        </h1>
+        
+        <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+          Submit directly from this page with our instant submission form. No redirects, direct photo uploads, zero brokerage fees, and direct contact with verified citizens.
+        </p>
+
+        <!-- Category Selector Segmented Tabs -->
+        <div class="inline-flex p-1.5 rounded-2xl bg-neutral-200/80 dark:bg-neutral-800 border border-neutral-300/80 dark:border-neutral-700/80 shadow-inner mt-8">
+          <button
+            id="tab-btn-events"
+            onclick="switchFormTab('events')"
+            type="button"
+            class="px-6 py-2.5 rounded-xl font-sans font-medium text-sm bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-md transition-all flex items-center gap-2"
+          >
+            <span>Post an Event</span>
+          </button>
+          <button
+            id="tab-btn-rentals"
+            onclick="switchFormTab('rentals')"
+            type="button"
+            class="px-6 py-2.5 rounded-xl font-sans font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all flex items-center gap-2"
+          >
+            <span>Post a Rental / Lease</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Native In-Page Form Container -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      
+      <!-- Submission Success Modal / Banner -->
+      <div id="success-banner" class="hidden mb-8 p-6 sm:p-8 rounded-3xl bg-emerald-50 dark:bg-emerald-950/40 border-2 border-emerald-500 text-center shadow-lg transition-all">
+        <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-2xl shadow-md">
+          ✓
+        </div>
+        <h3 class="font-serif font-black tracking-tight text-2xl text-emerald-950 dark:text-emerald-100 mb-2">
+          Listing Submitted Successfully!
+        </h3>
+        <p class="text-sm text-emerald-800 dark:text-emerald-300 max-w-lg mx-auto mb-6 leading-relaxed">
+          Thank you! Your listing has been recorded and will be verified by our Karimnagar moderation team. Approved listings appear on the live portal within 2 to 4 hours.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="index.html" class="px-5 py-2.5 rounded-xl font-sans font-medium text-sm bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:opacity-90 transition-opacity shadow-sm">
+            View Live Listings Directory
+          </a>
+          <button onclick="resetSubmissionForm()" type="button" class="px-5 py-2.5 rounded-xl font-sans font-medium text-sm bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 transition-colors">
+            Submit Another Listing
+          </button>
+        </div>
+      </div>
+
+      <!-- FORM A: City Event Submission -->
+      <form
+        id="events-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSe6VrWCxLJ4tVaZXqeccoa8jFRmIhEW_pcVmzu1kvPV7JaAUw/formResponse"
+        method="POST"
+        target="hidden_submit_iframe"
+        onsubmit="handleFormSubmit(event, 'events')"
+        class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 sm:p-10 shadow-xl space-y-6"
+      >
+        <div class="border-b border-neutral-100 dark:border-neutral-800 pb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="font-mono text-xs uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500 text-white font-bold">
+              Form A
+            </span>
+            <span class="font-mono text-xs uppercase tracking-wider text-neutral-500">Event Details</span>
+          </div>
+          <h2 class="font-serif font-black tracking-tight text-2xl sm:text-3xl text-neutral-900 dark:text-white">
+            Karimnagar Event Submission
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            Fill in the event information below. All fields marked with * are required.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <!-- Event Title (entry.1265589090) -->
+          <div class="sm:col-span-2 space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Event Title <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1265589090"
+              required
+              placeholder="e.g. Karimnagar Handloom & Craft Expo 2026"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            >
+          </div>
+
+          <!-- Category (entry.464276723) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Category <span class="text-amber-500">*</span>
+            </label>
+            <select
+              name="entry.464276723"
+              required
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all cursor-pointer"
+            >
+              <option value="">Select Event Category</option>
+              <option value="Expo">Expo / Exhibition</option>
+              <option value="Festival">Festival / Cultural</option>
+              <option value="Workshop">Workshop / Education</option>
+              <option value="Sale">Shopping / Sale</option>
+              <option value="Sports">Sports / Tournament</option>
+              <option value="Community">Community Gathering</option>
+            </select>
+          </div>
+
+          <!-- Event Timing (entry.1398278051) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Event Timing <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1398278051"
+              required
+              placeholder="e.g. 10:00 AM - 9:00 PM"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            >
+          </div>
+
+          <!-- Start Date (entry.1536121856) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Start Date <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="date"
+              name="entry.1536121856"
+              required
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all cursor-pointer"
+            >
+          </div>
+
+          <!-- End Date (entry.1737578205) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              End Date (Optional)
+            </label>
+            <input
+              type="date"
+              name="entry.1737578205"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all cursor-pointer"
+            >
+          </div>
+
+          <!-- Complete Venue / Street Address (entry.1396822808) -->
+          <div class="sm:col-span-2 space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Complete Venue Address <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1396822808"
+              required
+              placeholder="e.g. Circus Ground, Collectorate Road, Karimnagar - 505001"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            >
+          </div>
+
+          <!-- Locality / Area in Karimnagar (entry.1101522552) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Locality / Area in Karimnagar <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1101522552"
+              required
+              placeholder="e.g. Mukarrampur, Kothirampur, Collectorate Road"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            >
+          </div>
+
+          <!-- Prominent Landmark (entry.1593322996) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Prominent Landmark <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1593322996"
+              required
+              placeholder="e.g. Opposite Arts College Ground, Near Circus Ground"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            >
+          </div>
+
+          <!-- Organizer Name (entry.807915312) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Organizer / Organization Name <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.807915312"
+              required
+              placeholder="e.g. Telangana Craft Society / Ramesh Kumar"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            >
+          </div>
+
+          <!-- Contact Phone (entry.395823751) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Contact / WhatsApp Phone Number <span class="text-amber-500">*</span>
+            </label>
+            <input
+              type="tel"
+              name="entry.395823751"
+              required
+              pattern="[0-9]{10}"
+              placeholder="10-digit Indian Mobile Number (e.g. 9876543210)"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            >
+          </div>
+
+          <!-- Direct Photo Upload Section (Solution 2) -->
+          <div class="sm:col-span-2 space-y-2 p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700/80">
+            <div class="flex items-center justify-between">
+              <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+                Upload Event Banner / Poster Photo
+              </label>
+              <span class="font-mono text-xs uppercase tracking-wider text-amber-600 dark:text-amber-400 font-bold">Free Photo Host</span>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+              <input
+                type="file"
+                id="events-photo-file"
+                accept="image/*"
+                onchange="handleDirectUpload(this, 'events')"
+                class="w-full sm:flex-1 text-xs file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-sans file:font-medium file:text-xs file:bg-neutral-900 file:text-white dark:file:bg-white dark:file:text-neutral-900 hover:file:opacity-90 cursor-pointer"
+              >
+              <span id="events-upload-status" class="font-mono text-xs text-neutral-500">Ready to upload</span>
+            </div>
+
+            <!-- Upload preview & image link display -->
+            <div id="events-preview-box" class="hidden flex items-center gap-3 pt-2">
+              <img id="events-preview-img" src="" alt="Event Preview" class="w-14 h-14 rounded-lg object-cover border border-neutral-200 dark:border-neutral-700">
+              <div class="flex-1 min-w-0">
+                <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-semibold block">Photo attached successfully</span>
+                <span id="events-preview-url" class="font-mono text-[11px] text-neutral-500 truncate block"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description & Details (entry.175929072) with photo link appended -->
+          <div class="sm:col-span-2 space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Event Description & Highlights <span class="text-amber-500">*</span>
+            </label>
+            <textarea
+              id="events-description-input"
+              name="entry.175929072"
+              required
+              rows="4"
+              placeholder="Give a complete overview of the event, ticket price, attractions, entry instructions, and what visitors can expect..."
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-100 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="font-mono text-xs text-neutral-500">
+            Submission is free forever. Direct publish to Karimnagar.
+          </p>
+          <button
+            id="events-submit-btn"
+            type="submit"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-sans font-medium text-sm bg-amber-500 hover:bg-amber-600 text-white transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+          >
+            <span>Submit Event Listing</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- FORM B: Rental / Lease Space Submission -->
+      <form
+        id="rentals-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSf902rT0Bk58SobD9UNZp-HEe58RUq5yH9HRbVv6HXqsxvPpQ/formResponse"
+        method="POST"
+        target="hidden_submit_iframe"
+        onsubmit="handleFormSubmit(event, 'rentals')"
+        class="hidden bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 sm:p-10 shadow-xl space-y-6"
+      >
+        <div class="border-b border-neutral-100 dark:border-neutral-800 pb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="font-mono text-xs uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold">
+              Form B
+            </span>
+            <span class="font-mono text-xs uppercase tracking-wider text-neutral-500">Property Details</span>
+          </div>
+          <h2 class="font-serif font-black tracking-tight text-2xl sm:text-3xl text-neutral-900 dark:text-white">
+            Property & Space Submission
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            List commercial shutters, offices, apartments, or open land with zero broker fee.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <!-- Property Title (entry.1081137306) -->
+          <div class="sm:col-span-2 space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Listing Title <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1081137306"
+              required
+              placeholder="e.g. Commercial Shutter on Main Road or Spacious 2 BHK East Facing Flat"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Property Type (entry.581222316) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Property Type <span class="text-emerald-600">*</span>
+            </label>
+            <select
+              name="entry.581222316"
+              required
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all cursor-pointer"
+            >
+              <option value="">Select Property Type</option>
+              <option value="Commercial Shutter">Commercial Shutter / Shop</option>
+              <option value="Office Space">Commercial Office Space</option>
+              <option value="1 BHK">1 BHK Flat / Portion</option>
+              <option value="2 BHK">2 BHK Flat / Portion</option>
+              <option value="3 BHK">3 BHK Flat / Independent House</option>
+              <option value="Open Land">Open Land / Plot for Lease</option>
+              <option value="Community Space">Shared / Community Space</option>
+            </select>
+          </div>
+
+          <!-- Monthly Rent Amount (entry.1892413423) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Monthly Rent / Lease Price <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1892413423"
+              required
+              placeholder="e.g. Rs. 14,000/mo or Rs. 5 Lakhs Lease"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Built Up Area (entry.305402635) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Built-Up Area / Size <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.305402635"
+              required
+              placeholder="e.g. 1,200 SFT or 180 Sq. Yards"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Locality / Area in Karimnagar (entry.2032520572) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Locality / Area in Karimnagar <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.2032520572"
+              required
+              placeholder="e.g. Vavilalapally, Kothirampur, Jyothinagar"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Prominent Landmark (entry.1347474512) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Prominent Landmark <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1347474512"
+              required
+              placeholder="e.g. Near Geetha Bhavan, Behind District Hospital"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Full Street Address (entry.2029397558) -->
+          <div class="sm:col-span-2 space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Complete Property Address <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.2029397558"
+              required
+              placeholder="e.g. H.No 3-4-102/B, Road No 2, Vavilalapally, Karimnagar"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Owner / Contact Person (entry.1737174194) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Owner / Contact Name <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.1737174194"
+              required
+              placeholder="e.g. Srinivas Rao (Direct Owner)"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Contact Phone (entry.1862840015) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Contact / WhatsApp Phone Number <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="tel"
+              name="entry.1862840015"
+              required
+              pattern="[0-9]{10}"
+              placeholder="10-digit Indian Mobile Number (e.g. 9876543210)"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Key Features & Amenities (entry.287504649) -->
+          <div class="space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Key Features & Amenities <span class="text-emerald-600">*</span>
+            </label>
+            <input
+              type="text"
+              name="entry.287504649"
+              required
+              placeholder="e.g. 24/7 Bore Water, Car Parking, Lift, Main Road Facing"
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            >
+          </div>
+
+          <!-- Direct Photo Upload Section (Solution 2) -->
+          <div class="sm:col-span-2 space-y-2 p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700/80">
+            <div class="flex items-center justify-between">
+              <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+                Upload Property / Space Photos
+              </label>
+              <span class="font-mono text-xs uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold">Free Photo Host</span>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+              <input
+                type="file"
+                id="rentals-photo-file"
+                accept="image/*"
+                onchange="handleDirectUpload(this, 'rentals')"
+                class="w-full sm:flex-1 text-xs file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:font-sans file:font-medium file:text-xs file:bg-neutral-900 file:text-white dark:file:bg-white dark:file:text-neutral-900 hover:file:opacity-90 cursor-pointer"
+              >
+              <span id="rentals-upload-status" class="font-mono text-xs text-neutral-500">Ready to upload</span>
+            </div>
+
+            <!-- Upload preview & image link display -->
+            <div id="rentals-preview-box" class="hidden flex items-center gap-3 pt-2">
+              <img id="rentals-preview-img" src="" alt="Property Preview" class="w-14 h-14 rounded-lg object-cover border border-neutral-200 dark:border-neutral-700">
+              <div class="flex-1 min-w-0">
+                <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-semibold block">Photo attached successfully</span>
+                <span id="rentals-preview-url" class="font-mono text-[11px] text-neutral-500 truncate block"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms & Description (entry.379777045) -->
+          <div class="sm:col-span-2 space-y-1.5">
+            <label class="block font-sans font-medium text-xs sm:text-sm text-neutral-900 dark:text-neutral-200">
+              Detailed Terms & Description <span class="text-emerald-600">*</span>
+            </label>
+            <textarea
+              id="rentals-description-input"
+              name="entry.379777045"
+              required
+              rows="4"
+              placeholder="Specify advance deposit requirements, suitability for family/bachelor/office, power backup, water supply details..."
+              class="w-full px-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-100 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="font-mono text-xs text-neutral-500">
+            Direct owner listing. Zero broker commission.
+          </p>
+          <button
+            id="rentals-submit-btn"
+            type="submit"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-sans font-medium text-sm bg-emerald-600 hover:bg-emerald-700 text-white transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+          >
+            <span>Submit Rental Listing</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- Global Editorial Footer -->
+  <footer class="mt-20 border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-neutral-100 dark:border-neutral-800">
+        
+        <!-- Brand & Mission Description -->
+        <div class="flex flex-col items-center md:items-start text-center md:text-left max-w-md">
+          <a href="index.html" class="flex items-center gap-3 mb-3">
+            <img src="https://dbydxmedia.com/logo.png" alt="Karimnagar4You" class="w-8 h-8 rounded-lg object-contain">
+            <span class="font-serif font-black tracking-tight text-xl text-neutral-900 dark:text-white flex items-baseline">
+              Karimnagar<span class="text-amber-500 ml-px">4</span><span class="text-amber-500">You</span>
+            </span>
+          </a>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            The hyper-local discovery portal for Karimnagar city. Dedicated to connecting citizens with local events, community fests, and verified rental properties without broker commission.
+          </p>
+          <p class="font-mono text-xs tracking-wider text-neutral-500 mt-2">
+            Contact: <a href="mailto:soumith@dbydxmedia.com" class="text-amber-600 dark:text-amber-400 hover:underline">soumith@dbydxmedia.com</a>
+          </p>
+        </div>
+
+        <!-- Quick Links & Social Media -->
+        <div class="flex flex-col items-center md:items-end gap-4">
+          
+          <!-- Navigation Links -->
+          <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-sans font-medium text-neutral-600 dark:text-neutral-400">
+            <a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Events Directory</a>
+            <span class="text-neutral-300 dark:text-neutral-700">|</span>
+            <a href="index.html#rentals" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Rental Marketplace</a>
+            <span class="text-neutral-300 dark:text-neutral-700">|</span>
+            <a href="post.html" class="text-amber-600 dark:text-amber-400 font-semibold">Post Free Listing</a>
+          </div>
+
+          <!-- Social Media Icon Badges -->
+          <div class="flex items-center gap-2.5">
+            <!-- Instagram -->
+            <a
+              href="https://www.instagram.com/karimnagar4u/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Instagram"
+              class="w-10 h-10 rounded-full bg-[#E4405F] hover:opacity-90 transition-opacity flex items-center justify-center shadow-sm"
+            >
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a
+              href="https://www.youtube.com/@karimnagar4u"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Subscribe on YouTube"
+              class="w-10 h-10 rounded-full bg-[#FF0000] hover:opacity-90 transition-opacity flex items-center justify-center shadow-sm"
+            >
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <!-- Email -->
+            <a
+              href="mailto:soumith@dbydxmedia.com"
+              aria-label="Send us an email"
+              class="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors flex items-center justify-center border border-neutral-200 dark:border-neutral-700 shadow-sm"
+            >
+              <svg class="w-5 h-5 text-neutral-700 dark:text-neutral-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright -->
+      <div class="pt-8 flex items-center justify-center font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-500">
+        <span>&copy; <span id="current-year">2026</span> Karimnagar4You. All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+
+    // Switch between Events and Rentals forms
+    function switchFormTab(type) {
+      const eventsTab = document.getElementById('tab-btn-events');
+      const rentalsTab = document.getElementById('tab-btn-rentals');
+      const eventsForm = document.getElementById('events-form');
+      const rentalsForm = document.getElementById('rentals-form');
+      const successBanner = document.getElementById('success-banner');
+
+      if (successBanner) successBanner.classList.add('hidden');
+
+      if (type === 'events') {
+        eventsTab.className = "px-6 py-2.5 rounded-xl font-sans font-medium text-sm bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-md transition-all flex items-center gap-2";
+        rentalsTab.className = "px-6 py-2.5 rounded-xl font-sans font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all flex items-center gap-2";
+        
+        eventsForm.classList.remove('hidden');
+        rentalsForm.classList.add('hidden');
+      } else {
+        rentalsTab.className = "px-6 py-2.5 rounded-xl font-sans font-medium text-sm bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-md transition-all flex items-center gap-2";
+        eventsTab.className = "px-6 py-2.5 rounded-xl font-sans font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all flex items-center gap-2";
+        
+        rentalsForm.classList.remove('hidden');
+        eventsForm.classList.add('hidden');
+      }
+    }
+
+    // Direct Image Upload Handler (Solution 2 using free Catbox.moe / free upload API)
+    async function handleDirectUpload(inputEl, formType) {
+      const file = inputEl.files && inputEl.files[0];
+      if (!file) return;
+
+      const statusEl = document.getElementById(formType + '-upload-status');
+      const previewBox = document.getElementById(formType + '-preview-box');
+      const previewImg = document.getElementById(formType + '-preview-img');
+      const previewUrl = document.getElementById(formType + '-preview-url');
+      const descInput = document.getElementById(formType + '-description-input');
+
+      statusEl.innerHTML = `<span class="text-amber-500 font-bold animate-pulse">Uploading photo...</span>`;
+
+      try {
+        const formData = new FormData();
+        formData.append('reqtype', 'fileupload');
+        formData.append('fileToUpload', file);
+
+        // Upload to free catbox public host
+        const res = await fetch('https://catbox.moe/user/api.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (res.ok) {
+          const directUrl = (await res.text()).trim();
+          statusEl.innerHTML = `<span class="text-emerald-500 font-bold">Uploaded</span>`;
+          
+          if (previewBox && previewImg && previewUrl) {
+            previewImg.src = directUrl;
+            previewUrl.textContent = directUrl;
+            previewBox.classList.remove('hidden');
+          }
+
+          // Automatically append photo URL to the description so it saves in the Google Sheet
+          if (descInput) {
+            const currentDesc = descInput.value.trim();
+            if (!currentDesc.includes(directUrl)) {
+              descInput.value = currentDesc ? `${currentDesc}\n\nPhoto Link: ${directUrl}` : `Photo Link: ${directUrl}`;
+            }
+          }
+        } else {
+          fallbackLocalPreview(file, statusEl, previewBox, previewImg);
+        }
+      } catch (err) {
+        console.warn("Direct upload host reached fallback:", err);
+        fallbackLocalPreview(file, statusEl, previewBox, previewImg);
+      }
+    }
+
+    function fallbackLocalPreview(file, statusEl, previewBox, previewImg) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        if (previewImg && previewBox) {
+          previewImg.src = e.target.result;
+          previewBox.classList.remove('hidden');
+        }
+        statusEl.innerHTML = `<span class="text-emerald-500 font-semibold">Photo selected</span>`;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    let isSubmitting = false;
+
+    // Background Submission Handler
+    function handleFormSubmit(e, formType) {
+      isSubmitting = true;
+      const btn = document.getElementById(formType === 'events' ? 'events-submit-btn' : 'rentals-submit-btn');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `
+          <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          <span>Submitting to Karimnagar4You...</span>
+        `;
+      }
+      // Safety timeout for cross-origin response
+      setTimeout(() => {
+        if (isSubmitting) {
+          onBackgroundSubmitted();
+        }
+      }, 1800);
+    }
+
+    // Triggered when the hidden iframe finishes receiving the response
+    function onBackgroundSubmitted() {
+      if (!isSubmitting) return;
+      isSubmitting = false;
+
+      const eventsForm = document.getElementById('events-form');
+      const rentalsForm = document.getElementById('rentals-form');
+      const successBanner = document.getElementById('success-banner');
+
+      eventsForm.classList.add('hidden');
+      rentalsForm.classList.add('hidden');
+      successBanner.classList.remove('hidden');
+      successBanner.scrollIntoView({ behavior: 'smooth' });
+
+      // Reset buttons
+      const evBtn = document.getElementById('events-submit-btn');
+      const rnBtn = document.getElementById('rentals-submit-btn');
+      if (evBtn) {
+        evBtn.disabled = false;
+        evBtn.innerHTML = `<span>Submit Event Listing</span><span>&rarr;</span>`;
+      }
+      if (rnBtn) {
+        rnBtn.disabled = false;
+        rnBtn.innerHTML = `<span>Submit Rental Listing</span><span>&rarr;</span>`;
+      }
+    }
+
+    function resetSubmissionForm() {
+      const eventsForm = document.getElementById('events-form');
+      const rentalsForm = document.getElementById('rentals-form');
+      const successBanner = document.getElementById('success-banner');
+
+      eventsForm.reset();
+      rentalsForm.reset();
+      
+      const evPreview = document.getElementById('events-preview-box');
+      const rnPreview = document.getElementById('rentals-preview-box');
+      if (evPreview) evPreview.classList.add('hidden');
+      if (rnPreview) rnPreview.classList.add('hidden');
+
+      successBanner.classList.add('hidden');
+      switchFormTab('events');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const type = urlParams.get('type') || window.location.hash.replace('#', '');
+      if (type === 'rentals') {
+        switchFormTab('rentals');
+      } else {
+        switchFormTab('events');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<header class="sticky top-0 z-40 w-full bg-white/85 dark:bg-neutral-900/85 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800 transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      
+      <!-- Brand Logo & Title -->
+      <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 group">
+        <img src="https://dbydxmedia.com/logo.png" alt="Karimnagar4You" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl object-contain shadow-sm transition-transform duration-200 group-hover:scale-105">
+        <div class="flex flex-col">
+          <span class="font-serif font-black tracking-tight text-xl sm:text-2xl text-neutral-900 dark:text-white leading-none flex items-baseline">
+            Karimnagar<span class="text-amber-500 ml-px">4</span><span class="text-amber-500">You</span>
+          </span>
+          <span class="font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mt-0.5">
+            Events & Rental Portal
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Section Switcher Tabs -->
+      <nav class="hidden md:flex items-center p-1.5 rounded-2xl bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200/80 dark:border-neutral-700/80 shadow-inner">
+        <button id="tab-events-btn" onclick="if(window.switchTab){ switchTab('events'); } else { window.location.href='{{ '/' | relative_url }}'; }" class="px-5 py-2 rounded-xl font-sans font-medium text-sm bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-md transition-all flex items-center gap-2">
+          <span>Local Events</span>
+        </button>
+        <button id="tab-rentals-btn" onclick="if(window.switchTab){ switchTab('rentals'); } else { window.location.href='{{ '/' | relative_url }}#rentals'; }" class="px-5 py-2 rounded-xl font-sans font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all flex items-center gap-2">
+          <span>Rent & Lease</span>
+        </button>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Theme Toggle Button -->
+        <button onclick="toggleTheme()" type="button" aria-label="Toggle Dark Mode" class="p-2 sm:p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 transition-colors shadow-sm">
+          <!-- Sun Icon -->
+          <svg class="theme-icon-sun hidden w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon Icon -->
+          <svg class="theme-icon-moon hidden w-5 h-5 text-neutral-700 dark:text-neutral-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <!-- "+ List Yours" CTA Button -> Opens Dedicated Landing Form Page -->
+        <a href="{{ '/post.html' | relative_url }}" class="group px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl font-sans font-medium text-xs sm:text-sm bg-amber-500 text-white hover:bg-amber-600 transition-all shadow-md hover:shadow-lg flex items-center gap-1.5 flex-shrink-0 border border-amber-600/20">
+          <svg class="w-4 h-4 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+          <span class="hidden sm:inline">List Yours Free</span>
+          <span class="sm:hidden">Post</span>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" type="button" aria-label="Open Navigation Menu" class="md:hidden p-2 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Slide-Down Menu -->
+    <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="if(window.switchTab){ switchTab('events'); toggleMobileMenu(); } else { window.location.href='{{ '/' | relative_url }}'; }" class="py-2.5 px-3 rounded-xl font-sans font-medium text-xs text-center bg-amber-500 text-white shadow-sm">
+          Local Events
+        </button>
+        <button onclick="if(window.switchTab){ switchTab('rentals'); toggleMobileMenu(); } else { window.location.href='{{ '/' | relative_url }}#rentals'; }" class="py-2.5 px-3 rounded-xl font-sans font-medium text-xs text-center bg-emerald-600 text-white shadow-sm">
+          Rent & Lease
+        </button>
+      </div>
+      <div class="pt-2 flex items-center justify-between text-xs text-neutral-500 font-mono">
+        <span class="font-mono text-xs uppercase tracking-wider">Karimnagar, Telangana</span>
+        <a href="{{ '/post.html' | relative_url }}" class="font-sans font-medium text-amber-600 dark:text-amber-400">
+          + Post a Listing
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) {
+      menu.classList.toggle('hidden');
+    }
+  }
+</script>

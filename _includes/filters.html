@@ -1,0 +1,91 @@
+<!-- Search, Locality Filters & View Mode Bar -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+  <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+    
+    <!-- Top Row: Search Input -->
+    <div class="relative w-full">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search by title, locality (e.g. Mukarrampur, Collectorate Road), landmark, or keyword..."
+        class="w-full pl-11 pr-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+      >
+    </div>
+
+    <!-- Bottom Row: Dynamic Locality Filter + Category Filter + View Toggle + Live Count -->
+    <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+      
+      <!-- Filters Group -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 flex-1">
+        
+        <!-- Locality / Area Select (Dynamic) -->
+        <div class="relative flex-1 sm:max-w-xs">
+          <select
+            id="area-filter"
+            class="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer transition-all"
+          >
+            <option value="">All Localities in Karimnagar</option>
+          </select>
+        </div>
+
+        <!-- Category / Type Select (Dynamic) -->
+        <div class="relative flex-1 sm:max-w-xs">
+          <select
+            id="category-filter"
+            class="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer transition-all"
+          >
+            <option value="">All Categories</option>
+          </select>
+        </div>
+
+        <!-- Reset Button -->
+        <button
+          onclick="resetFilters()"
+          class="px-3 py-2.5 font-sans font-medium text-xs rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors whitespace-nowrap self-center"
+        >
+          Reset Filters
+        </button>
+
+      </div>
+
+      <!-- Right: View Mode Toggle & Live Counter -->
+      <div class="flex items-center justify-between sm:justify-end gap-4 pt-2 md:pt-0">
+        <!-- Live Count Badge -->
+        <span id="listings-count" class="font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+          Loading listings...
+        </span>
+
+        <!-- Grid vs List View Segmented Toggle -->
+        <div class="flex items-center p-1 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+          <button
+            id="view-grid-btn"
+            onclick="switchViewMode('grid')"
+            aria-label="Grid View"
+            class="p-2 rounded-lg bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-white transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+          </button>
+          <button
+            id="view-list-btn"
+            onclick="switchViewMode('list')"
+            aria-label="List View"
+            class="p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

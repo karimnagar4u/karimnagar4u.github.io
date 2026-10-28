@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Karimnagar4You — Events & Rental Portal for Karimnagar City (Local Preview)</title>
+  <meta name="description" content="Discover upcoming expos, cultural fests, workshops, and browse verified commercial shutters, office spaces, and flats for rent across Karimnagar.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://dbydxmedia.com/logo.png">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            display: ['"Cinzel"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- PapaParse for Fast CSV Parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <!-- Custom Site Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Theme Script (executed early to prevent flash) -->
+  <script src="assets/js/theme.js"></script>
+
+  <!-- Live Configuration from Google Sheets & Forms -->
+  <script>
+    window.SITE_CONFIG = {
+      eventsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-7hF56kJw3cZiusLvi70dD6LTuJw5ttJP2eCIBlmwzxa46Vnc8D8RIAguxrw5CXT43rMpPG7ZzeXV/pub?gid=239794758&single=true&output=csv",
+      rentalsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-7hF56kJw3cZiusLvi70dD6LTuJw5ttJP2eCIBlmwzxa46Vnc8D8RIAguxrw5CXT43rMpPG7ZzeXV/pub?gid=939137964&single=true&output=csv",
+      eventsFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe6VrWCxLJ4tVaZXqeccoa8jFRmIhEW_pcVmzu1kvPV7JaAUw/viewform",
+      rentalsFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSf902rT0Bk58SobD9UNZp-HEe58RUq5yH9HRbVv6HXqsxvPpQ/viewform",
+      siteUrl: "https://karimnagar4u.github.io",
+      baseUrl: ""
+    };
+  </script>
+</head>
+<body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-white transition-colors duration-200">
+  
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-40 w-full bg-white/85 dark:bg-neutral-900/85 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo & Title -->
+        <a href="#" class="flex items-center gap-3 group">
+          <img src="https://dbydxmedia.com/logo.png" alt="Karimnagar4You" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl object-contain shadow-sm transition-transform duration-200 group-hover:scale-105">
+          <div class="flex flex-col">
+            <span class="font-serif font-black tracking-tight text-xl sm:text-2xl text-neutral-900 dark:text-white leading-none flex items-baseline">
+              Karimnagar<span class="text-amber-500 ml-px">4</span><span class="text-amber-500">You</span>
+            </span>
+            <span class="font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mt-0.5">
+              Events & Rental Portal
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Section Switcher Tabs -->
+        <nav class="hidden md:flex items-center p-1.5 rounded-2xl bg-neutral-100 dark:bg-neutral-800/90 border border-neutral-200/80 dark:border-neutral-700/80 shadow-inner">
+          <button id="tab-events-btn" onclick="switchTab('events')" class="px-5 py-2 rounded-xl font-sans font-medium text-sm bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-md transition-all flex items-center gap-2">
+            <span>Local Events</span>
+          </button>
+          <button id="tab-rentals-btn" onclick="switchTab('rentals')" class="px-5 py-2 rounded-xl font-sans font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all flex items-center gap-2">
+            <span>Rent & Lease</span>
+          </button>
+        </nav>
+
+        <!-- Right Action Controls -->
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <!-- Theme Toggle Button -->
+          <button onclick="toggleTheme()" type="button" aria-label="Toggle Dark Mode" class="p-2 sm:p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 transition-colors shadow-sm">
+            <svg class="theme-icon-sun hidden w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg class="theme-icon-moon hidden w-5 h-5 text-neutral-700 dark:text-neutral-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <!-- "+ List Yours" CTA Button -->
+          <a href="post.html" class="group px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl font-sans font-medium text-xs sm:text-sm bg-amber-500 text-white hover:bg-amber-600 transition-all shadow-md hover:shadow-lg flex items-center gap-1.5 flex-shrink-0 border border-amber-600/20">
+            <svg class="w-4 h-4 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+            </svg>
+            <span class="hidden sm:inline">List Yours Free</span>
+            <span class="sm:hidden">Post</span>
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" type="button" aria-label="Open Navigation Menu" class="md:hidden p-2 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Slide-Down Menu -->
+      <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="switchTab('events'); toggleMobileMenu();" class="py-2.5 px-3 rounded-xl font-sans font-medium text-xs text-center bg-amber-500 text-white shadow-sm">
+            Local Events
+          </button>
+          <button onclick="switchTab('rentals'); toggleMobileMenu();" class="py-2.5 px-3 rounded-xl font-sans font-medium text-xs text-center bg-emerald-600 text-white shadow-sm">
+            Rent & Lease
+          </button>
+        </div>
+        <div class="pt-2 flex items-center justify-between text-xs text-neutral-500 font-mono">
+          <span class="font-mono text-xs uppercase tracking-wider">Karimnagar, Telangana</span>
+          <a href="post.html" class="font-sans font-medium text-amber-600 dark:text-amber-400">
+            + Post a Listing
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    
+    <!-- Hero Carousel Banner Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+      <div class="relative group rounded-2xl border-2 border-neutral-900 dark:border-neutral-700 shadow-xl overflow-hidden bg-neutral-900">
+        
+        <div id="hero-carousel" class="w-full aspect-[21/9] min-h-[280px] sm:min-h-[360px] md:min-h-[420px]">
+          <div class="skeleton-shimmer w-full h-full min-h-[360px] flex items-center justify-center">
+            <span class="text-neutral-500 font-mono text-xs uppercase tracking-wider">Loading Karimnagar Highlights...</span>
+          </div>
+        </div>
+
+        <button onclick="prevCarouselSlide()" aria-label="Previous Slide" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-opacity opacity-0 group-hover:opacity-100 z-10">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <button onclick="nextCarouselSlide()" aria-label="Next Slide" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-opacity opacity-0 group-hover:opacity-100 z-10">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div id="carousel-dots" class="absolute bottom-4 right-6 flex items-center gap-2 z-10"></div>
+      </div>
+    </section>
+
+    <!-- Search, Locality Filters & View Mode Bar -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <div class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+        
+        <div class="relative w-full">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search by title, locality (e.g. Mukarrampur, Collectorate Road), landmark, or keyword..."
+            class="w-full pl-11 pr-4 py-3 text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+          >
+        </div>
+
+        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 flex-1">
+            <div class="relative flex-1 sm:max-w-xs">
+              <select
+                id="area-filter"
+                class="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer transition-all"
+              >
+                <option value="">All Localities in Karimnagar</option>
+              </select>
+            </div>
+
+            <div class="relative flex-1 sm:max-w-xs">
+              <select
+                id="category-filter"
+                class="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer transition-all"
+              >
+                <option value="">All Categories</option>
+              </select>
+            </div>
+
+            <button
+              onclick="resetFilters()"
+              class="px-3 py-2.5 font-sans font-medium text-xs rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors whitespace-nowrap self-center"
+            >
+              Reset Filters
+            </button>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-4 pt-2 md:pt-0">
+            <span id="listings-count" class="font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+              Loading listings...
+            </span>
+
+            <div class="flex items-center p-1 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+              <button
+                id="view-grid-btn"
+                onclick="switchViewMode('grid')"
+                aria-label="Grid View"
+                class="p-2 rounded-lg bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-white transition-colors"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+              </button>
+              <button
+                id="view-list-btn"
+                onclick="switchViewMode('list')"
+                aria-label="List View"
+                class="p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Main Listings Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-neutral-200 dark:border-neutral-800 gap-2">
+        <div>
+          <h2 id="section-heading" class="font-serif font-black tracking-tight text-2xl sm:text-3xl text-neutral-900 dark:text-white">
+            Verified Listings in Karimnagar
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            Direct from organizers and owners. No middleman, zero brokerage.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-xs uppercase tracking-wider bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900/40">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            <span>Hyper-Local Directory</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Dynamic listings container -->
+      <div id="listings-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    </section>
+
+    <!-- Community Trust Info Box -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="rounded-3xl bg-gradient-to-br from-amber-500/10 via-neutral-100 to-emerald-500/10 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800/80 border border-neutral-200 dark:border-neutral-800 p-6 sm:p-10 shadow-sm">
+        <div class="max-w-3xl">
+          <span class="font-mono text-xs uppercase tracking-wider text-amber-600 dark:text-amber-400 font-bold">
+            Direct Connect • 100% Free • Karimnagar Dedicated
+          </span>
+          <h2 class="font-serif font-black tracking-tight text-2xl sm:text-3xl text-neutral-900 dark:text-white mt-2 mb-3">
+            How Karimnagar4You Empowers Our City
+          </h2>
+          <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed mb-6">
+            Karimnagar4You is built for the people of Karimnagar to find genuine events, workshops, exhibitions, and rental properties without paying commissions to brokers. Every listing is submitted by citizens and verified by local moderators before publishing.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 rounded-2xl bg-white dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700/60 shadow-sm">
+              <span class="font-mono text-xs uppercase tracking-wider font-bold text-amber-600 dark:text-amber-400 block mb-1">01 / Search</span>
+              <h3 class="font-sans font-medium text-sm text-neutral-900 dark:text-white mb-1">Instant Locality Filters</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">Filter instantly by locality: Mukarrampur, Kothirampur, Vavilalapally, Tower Circle, and more.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700/60 shadow-sm">
+              <span class="font-mono text-xs uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400 block mb-1">02 / Connect</span>
+              <h3 class="font-sans font-medium text-sm text-neutral-900 dark:text-white mb-1">Direct WhatsApp Chat</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">Reach event organizers and property owners directly with automated inquiries.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700/60 shadow-sm">
+              <span class="font-mono text-xs uppercase tracking-wider font-bold text-blue-600 dark:text-blue-400 block mb-1">03 / Publish</span>
+              <h3 class="font-sans font-medium text-sm text-neutral-900 dark:text-white mb-1">Free Submissions</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">Submit your property or local event right from your phone for free community reach.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-5 bg-black/70 modal-backdrop overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-2xl overflow-hidden modal-content my-8">
+      <button onclick="closeDetailModal()" aria-label="Close Modal" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all backdrop-blur-md">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+      <div id="detail-modal-body" class="p-5 sm:p-7 max-h-[85vh] overflow-y-auto"></div>
+    </div>
+  </div>
+
+  <!-- Global Editorial Footer -->
+  <footer class="mt-20 border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-neutral-100 dark:border-neutral-800">
+        <div class="flex flex-col items-center md:items-start text-center md:text-left max-w-md">
+          <a href="#" class="flex items-center gap-3 mb-3">
+            <img src="https://dbydxmedia.com/logo.png" alt="Karimnagar4You" class="w-8 h-8 rounded-lg object-contain">
+            <span class="font-serif font-black tracking-tight text-xl text-neutral-900 dark:text-white">
+              Karimnagar<span class="text-amber-500">4You</span>
+            </span>
+          </a>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            The hyper-local discovery portal for Karimnagar city. Dedicated to connecting citizens with local events, community fests, and verified rental properties without broker commission.
+          </p>
+          <p class="font-mono text-xs tracking-wider text-neutral-500 mt-2">
+            Contact: <a href="mailto:soumith@dbydxmedia.com" class="text-amber-600 dark:text-amber-400 hover:underline">soumith@dbydxmedia.com</a>
+          </p>
+        </div>
+        <div class="flex flex-col items-center md:items-end gap-4">
+          <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-sans font-medium text-neutral-600 dark:text-neutral-400">
+            <button onclick="switchTab('events')" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Events Directory</button>
+            <span class="text-neutral-300 dark:text-neutral-700">|</span>
+            <button onclick="switchTab('rentals')" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Rental Marketplace</button>
+            <span class="text-neutral-300 dark:text-neutral-700">|</span>
+            <a href="post.html" class="hover:text-neutral-900 dark:hover:text-white transition-colors text-amber-600 dark:text-amber-400">Post Free Listing</a>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/karimnagar4u/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" class="w-10 h-10 rounded-full bg-[#E4405F] hover:opacity-90 transition-opacity flex items-center justify-center shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@karimnagar4u" target="_blank" rel="noopener noreferrer" aria-label="Subscribe on YouTube" class="w-10 h-10 rounded-full bg-[#FF0000] hover:opacity-90 transition-opacity flex items-center justify-center shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:soumith@dbydxmedia.com" aria-label="Send us an email" class="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors flex items-center justify-center border border-neutral-200 dark:border-neutral-700 shadow-sm">
+              <svg class="w-5 h-5 text-neutral-700 dark:text-neutral-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 flex items-center justify-center font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-500">
+        <span>&copy; <span id="current-year">2026</span> Karimnagar4You. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

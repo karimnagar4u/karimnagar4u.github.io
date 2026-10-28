@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  {% include head.html %}
+  <body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-white transition-colors duration-200">
+    
+    <!-- Navbar Header -->
+    {% include navbar.html %}
+
+    <!-- Main Content Flow -->
+    <main class="flex-grow">
+      {{ content }}
+    </main>
+
+    <!-- Global Modals -->
+    {% include detail_modal.html %}
+    {% include submit_modal.html %}
+
+    <!-- Hidden Card Templates for reference -->
+    <div class="hidden">
+      {% include event_card.html %}
+      {% include rental_card.html %}
+    </div>
+
+    <!-- Global Footer -->
+    {% include footer.html %}
+
+    <!-- Client-Side Engine Application Controller -->
+    <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+  </body>
+</html>

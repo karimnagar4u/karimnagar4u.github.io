@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181B" />
+      <stop offset="100%" stop-color="#09090B" />
+    </linearGradient>
+  </defs>
+  <!-- Background Shield / Square with rounded corners -->
+  <rect width="240" height="240" rx="54" fill="url(#bgGrad)" />
+  <rect x="4" y="4" width="232" height="232" rx="50" stroke="#F59E0B" stroke-width="2" stroke-opacity="0.3" fill="none" />
+  
+  <!-- Stylized Monogram "K4U" -->
+  <!-- Tower / Arch Motif -->
+  <path d="M70 180V60L105 95M105 145L70 180" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M100 120H150" stroke="url(#brandGrad)" stroke-width="16" stroke-linecap="round" />
+  <path d="M140 65V175" stroke="url(#brandGrad)" stroke-width="16" stroke-linecap="round" />
+  <path d="M175 110V155C175 168.807 186.193 180 200 180C213.807 180 225 168.807 225 155V110" stroke="white" stroke-width="14" stroke-linecap="round" />
+  
+  <!-- Star / Spark accent -->
+  <circle cx="140" cy="46" r="6" fill="#F59E0B" />
+</svg>

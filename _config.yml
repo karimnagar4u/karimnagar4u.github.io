@@ -1,0 +1,40 @@
+# Site Settings for Karimnagar4You
+title: "Karimnagar4You"
+tagline: "Events & Rental Portal for Karimnagar City"
+description: "Discover local events, exhibitions, cultural fests, and find commercial shutters, office spaces, and residential rentals across Karimnagar."
+url: "https://karimnagar4u.github.io"
+baseurl: "" # Empty for user/organization pages (karimnagar4u.github.io)
+
+# Branding Assets
+logo: "https://dbydxmedia.com/logo.png"
+favicon: "https://dbydxmedia.com/logo.png"
+
+# Author & Contact
+author:
+  name: "Karimnagar4You Community"
+  email: "soumith@dbydxmedia.com"
+
+# Social Media Links
+social:
+  instagram: "https://www.instagram.com/karimnagar4u/"
+  youtube: "https://www.youtube.com/@karimnagar4u"
+  whatsapp: ""
+
+# Google Sheets Live CSV Configuration
+events_csv_url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-7hF56kJw3cZiusLvi70dD6LTuJw5ttJP2eCIBlmwzxa46Vnc8D8RIAguxrw5CXT43rMpPG7ZzeXV/pub?gid=239794758&single=true&output=csv"
+rentals_csv_url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-7hF56kJw3cZiusLvi70dD6LTuJw5ttJP2eCIBlmwzxa46Vnc8D8RIAguxrw5CXT43rMpPG7ZzeXV/pub?gid=939137964&single=true&output=csv"
+
+# Google Forms Links (Live Submission Forms)
+events_form_url: "https://docs.google.com/forms/d/e/1FAIpQLSe6VrWCxLJ4tVaZXqeccoa8jFRmIhEW_pcVmzu1kvPV7JaAUw/viewform"
+rentals_form_url: "https://docs.google.com/forms/d/e/1FAIpQLSf902rT0Bk58SobD9UNZp-HEe58RUq5yH9HRbVv6HXqsxvPpQ/viewform"
+
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title/
+include:
+  - _includes
+  - _layouts
+  - assets
+exclude:
+  - instructions.md
+  - README.md

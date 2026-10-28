@@ -1,0 +1,76 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>{{ page.title | default: site.title }} — {{ site.tagline }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  
+  <!-- Canonical & Social Meta -->
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.logo | default: 'https://dbydxmedia.com/logo.png' }}">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ site.favicon | default: 'https://dbydxmedia.com/logo.png' }}">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            display: ['"Cinzel"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- PapaParse for Fast CSV Parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <!-- Custom Site Styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- Theme Script (executed early to prevent flash) -->
+  <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+
+  <!-- Inject Jekyll configuration into client JS -->
+  <script>
+    window.SITE_CONFIG = {
+      eventsCsvUrl: "{{ site.events_csv_url | default: '' }}",
+      rentalsCsvUrl: "{{ site.rentals_csv_url | default: '' }}",
+      eventsFormUrl: "{{ site.events_form_url | default: 'https://docs.google.com/forms' }}",
+      rentalsFormUrl: "{{ site.rentals_form_url | default: 'https://docs.google.com/forms' }}",
+      siteUrl: "{{ site.url }}",
+      baseUrl: "{{ site.baseurl }}"
+    };
+  </script>
+</head>

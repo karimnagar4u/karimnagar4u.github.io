@@ -1,0 +1,54 @@
+<!-- Event Card Template (Used by Jekyll or JS Renderer) -->
+<template id="event-card-template">
+  <article class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-sm card-hover-effect flex flex-col justify-between">
+    <div>
+      <div class="relative aspect-[16/10] overflow-hidden bg-neutral-100 dark:bg-neutral-800 cursor-pointer">
+        <img src="" alt="" class="card-img w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <span class="card-category absolute top-3 left-3 px-2.5 py-1 rounded-full font-mono text-xs uppercase tracking-wider font-bold bg-amber-500 text-white shadow-md">
+          Event
+        </span>
+        <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white font-mono text-xs uppercase tracking-wider">
+          <span class="card-area bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md">
+            Karimnagar
+          </span>
+          <span class="card-price bg-neutral-900/80 backdrop-blur-md px-2 py-0.5 rounded-md font-bold text-amber-300">
+            Free Entry
+          </span>
+        </div>
+      </div>
+
+      <div class="p-4 sm:p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="card-date font-mono text-xs uppercase tracking-wider text-amber-800 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200/80 dark:border-amber-900/50">
+            Date
+          </span>
+        </div>
+
+        <h3 class="card-title font-serif text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2 line-clamp-1 hover:text-amber-600 transition-colors cursor-pointer">
+          Event Title
+        </h3>
+
+        <p class="card-desc text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 mb-4 leading-relaxed">
+          Event Description
+        </p>
+
+        <div class="card-address font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800/80 pt-3 flex items-center justify-between">
+          <span class="truncate">Address</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 sm:p-5 pt-0 grid grid-cols-3 gap-2">
+      <button class="card-detail-btn py-2 px-2 font-sans font-medium text-xs rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors text-center">
+        Details
+      </button>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="card-wa-btn py-2 px-2 font-sans font-medium text-xs rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white transition-colors text-center flex items-center justify-center gap-1 shadow-sm">
+        WhatsApp
+      </a>
+      <a href="#" class="card-call-btn py-2 px-2 font-sans font-medium text-xs rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors text-center flex items-center justify-center gap-1 shadow-sm">
+        Call
+      </a>
+    </div>
+  </article>
+</template>

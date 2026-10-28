@@ -1,0 +1,27 @@
+<!-- Listing Detail Popup Modal -->
+<div
+  id="detail-modal"
+  class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-5 bg-black/70 modal-backdrop overflow-y-auto"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="relative w-full max-w-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-2xl overflow-hidden modal-content my-8">
+    
+    <!-- Close Button -->
+    <button
+      onclick="closeDetailModal()"
+      aria-label="Close Modal"
+      class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all backdrop-blur-md"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Modal Dynamic Content Body -->
+    <div id="detail-modal-body" class="p-5 sm:p-7 max-h-[85vh] overflow-y-auto">
+      <!-- Injected dynamically by openDetailModal() in app.js -->
+    </div>
+
+  </div>
+</div>

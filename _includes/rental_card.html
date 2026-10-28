@@ -1,0 +1,54 @@
+<!-- Rental Card Template (Used by Jekyll or JS Renderer) -->
+<template id="rental-card-template">
+  <article class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-sm card-hover-effect flex flex-col justify-between">
+    <div>
+      <div class="relative aspect-[16/10] overflow-hidden bg-neutral-100 dark:bg-neutral-800 cursor-pointer">
+        <img src="" alt="" class="rental-img w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+        <span class="rental-type absolute top-3 left-3 px-2.5 py-1 rounded-full font-mono text-xs uppercase tracking-wider font-bold bg-emerald-600 text-white shadow-md">
+          Rental
+        </span>
+        <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white font-mono text-xs uppercase tracking-wider">
+          <span class="rental-area bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md">
+            Karimnagar
+          </span>
+          <span class="rental-size bg-neutral-900/80 backdrop-blur-md px-2 py-0.5 rounded-md font-bold text-emerald-300">
+            Area
+          </span>
+        </div>
+      </div>
+
+      <div class="p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-2">
+          <span class="rental-price font-mono text-xs uppercase tracking-wider font-bold text-emerald-800 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded border border-emerald-200/80 dark:border-emerald-900/50">
+            Rent
+          </span>
+        </div>
+
+        <h3 class="rental-title font-serif text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2 line-clamp-1 hover:text-emerald-600 transition-colors cursor-pointer">
+          Rental Title
+        </h3>
+
+        <p class="rental-desc text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 mb-3 leading-relaxed">
+          Rental Description
+        </p>
+
+        <div class="rental-address font-mono text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800/80 pt-3 flex items-center justify-between">
+          <span class="truncate">Address</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 sm:p-5 pt-0 grid grid-cols-3 gap-2">
+      <button class="rental-detail-btn py-2 px-2 font-sans font-medium text-xs rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors text-center">
+        Details
+      </button>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="rental-wa-btn py-2 px-2 font-sans font-medium text-xs rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white transition-colors text-center flex items-center justify-center gap-1 shadow-sm">
+        WhatsApp
+      </a>
+      <a href="#" class="rental-call-btn py-2 px-2 font-sans font-medium text-xs rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors text-center flex items-center justify-center gap-1 shadow-sm">
+        Call
+      </a>
+    </div>
+  </article>
+</template>
