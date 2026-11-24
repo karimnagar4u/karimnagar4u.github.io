@@ -24,9 +24,9 @@ social:
 events_csv_url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-7hF56kJw3cZiusLvi70dD6LTuJw5ttJP2eCIBlmwzxa46Vnc8D8RIAguxrw5CXT43rMpPG7ZzeXV/pub?gid=239794758&single=true&output=csv"
 rentals_csv_url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-7hF56kJw3cZiusLvi70dD6LTuJw5ttJP2eCIBlmwzxa46Vnc8D8RIAguxrw5CXT43rMpPG7ZzeXV/pub?gid=939137964&single=true&output=csv"
 
-# Google Forms Links (Live Submission Forms)
-events_form_url: "https://docs.google.com/forms/d/e/1FAIpQLSe6VrWCxLJ4tVaZXqeccoa8jFRmIhEW_pcVmzu1kvPV7JaAUw/viewform"
-rentals_form_url: "https://docs.google.com/forms/d/e/1FAIpQLSf902rT0Bk58SobD9UNZp-HEe58RUq5yH9HRbVv6HXqsxvPpQ/viewform"
+# Google Apps Script Submission API (replaces Google Forms)
+# Replace with your deployed Apps Script Web App URL
+submission_api_url: "https://script.google.com/macros/s/AKfycbwSW1yUwa7GvLS4Vy4U8CqNTlY4an8Qb1UpoLvceAwGfk-F0FxIKzNcfDHfNnycD20u/exec"
 
 # Build settings
 markdown: kramdown
